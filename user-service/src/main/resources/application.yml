@@ -13,6 +13,8 @@ spring:
       use-only-site-local-interfaces: true #只使用本地主机的ip地址(防止连接到VMware地址)
     nacos:
       server-addr: localhost:8848  #nacos服务地址
+      discovery:
+        cluster-name: HZ  #设置集群名称
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:

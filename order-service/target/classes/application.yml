@@ -12,11 +12,13 @@ spring:
     inetutils:
       use-only-site-local-interfaces: true #只使用本地主机的ip地址(防止连接到VMware地址)
     nacos:
-      discovery:
         server-addr: localhost:8848 #nacos服务地址
+        discovery:
+          cluster-name: SH  #设置集群名称
+          namespace: e9c78664-2c9c-43c1-b702-d61f067885db  #命名空间ID
 userservice:
   ribbon:
-    NFLoadBalanxerRuleClassName: com.netflix.loadbalancer.RandomRule   #将负载均衡规则改为随机(只针对单一服务)----方法2
+    NFLoadBalanxerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  #优先访问本地集群(同集群),本地访问不到时，采用跨集群访问
 ribbon:
   eager-load:
     enabled: true #开启饥饿加载
