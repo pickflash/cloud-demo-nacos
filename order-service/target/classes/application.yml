@@ -16,6 +16,7 @@ spring:
         discovery:
           cluster-name: SH  #设置集群名称
           namespace: e9c78664-2c9c-43c1-b702-d61f067885db  #命名空间ID
+#          ephemeral: false  #是否是临时实例
 userservice:
   ribbon:
     NFLoadBalanxerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  #优先访问本地集群(同集群),本地访问不到时，采用跨集群访问

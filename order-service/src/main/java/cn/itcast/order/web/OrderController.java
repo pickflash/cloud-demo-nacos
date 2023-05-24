@@ -1,5 +1,6 @@
 package cn.itcast.order.web;
 
+import cn.itcast.order.clients.UserClient;
 import cn.itcast.order.pojo.Order;
 import cn.itcast.order.pojo.User;
 import cn.itcast.order.service.OrderService;
@@ -17,7 +18,26 @@ public class OrderController {
    @Autowired
    private OrderService orderService;
 
-   @Autowired
+    @Autowired
+    private UserClient userClient;
+
+    @GetMapping("{orderId}")
+    public Order queryOrderByUserId(@PathVariable Long orderId) {
+        //1,根据id查询订单
+        Order order=orderService.queryOrderById(orderId);
+
+        //2,服务名称代替地址
+        User user =userClient.findById(order.getUserId());
+        //3，封装user到order中
+        order.setUser(user);
+        return order;
+    }
+
+
+
+
+
+   /*@Autowired
    private RestTemplate restTemplate;
 
     @GetMapping("{orderId}")
@@ -32,5 +52,5 @@ public class OrderController {
         //3，封装user到order中
         order.setUser(user);
         return order;
-    }
+    }*/
 }
